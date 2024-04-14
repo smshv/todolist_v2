@@ -1,13 +1,21 @@
-<header>
-  <img src="assets/logo.png" alt="Application Logo" class="logo">
+<header class="header" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}">
+  <div class="container">
+    <img src="assets/logo.png" alt="Application Logo" class="logo" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}">
+  </div>
 </header>
 <main class="main">
-  <nav class="nav">
-    <li class="nav__item">Home</li>
-    <li class="nav__item">Today</li>
-    <li class="nav__item">This Week</li>
-    <li class="nav__item">Projects</li>
-    <li class="nav__item nav__item--separate">Create todo</li>
-  </nav>
-  <router-outlet></router-outlet>
+    <nav class="nav" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}">
+      <ul class="nav__list container" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}">
+        <li class="nav__item"><a [routerLink]="['/']">Home</a></li>
+        <li class="nav__item"><a [routerLink]="['for', 'today']">Today</a></li>
+        <li class="nav__item"><a [routerLink]="['for', 'thiswk']">Today</a></li>
+        <li class="nav__item">Projects</li>
+        <li class="nav__item nav__item--separate" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}"><a [routerLink]="['new']">create todo</a></li>
+      </ul>
+    </nav>
+    <section class="contents">
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </section>
 </main>
