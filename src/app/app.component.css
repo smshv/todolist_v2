@@ -19,6 +19,9 @@
 .nav{
     background-color: #eee;
 }
+.nav__list{
+    list-style: none;
+}
 .nav.is-phone-portrait{
     padding: 2rem 0;
 }
@@ -32,14 +35,28 @@
     gap: 2.1rem;
 }
 .nav__item{
-    list-style: none;
     align-self: center;
     text-transform: uppercase;
+    padding: 0.25rem;
+    font-size: 1.125rem;
+    color: #aa4162;
+    border-bottom: 2px solid transparent;
 }
+.proj-menu>.nav__item{
+    margin: 0px 1rem;  /*making proj-menu width bigger*/
+}
+.nav__item:hover{
+    border-bottom-color: #aa4162;
+}
+.proj-menu{
+    position: relative;
+}
+
+
 .nav__item--separate.is-phone-portrait{
     margin-top: 1rem;
 }
 .nav__item--separate.is-big-screen{
-    flex-grow: 1;
+    margin-left: auto;
     text-align: right;
 }

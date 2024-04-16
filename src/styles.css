@@ -11,4 +11,5 @@ img{
 }
 a, a:visited{
     text-decoration: none;
+    color: inherit;
 }

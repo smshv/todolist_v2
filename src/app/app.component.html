@@ -8,8 +8,15 @@
       <ul class="nav__list container" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}">
         <li class="nav__item"><a [routerLink]="['/']">Home</a></li>
         <li class="nav__item"><a [routerLink]="['for', 'today']">Today</a></li>
-        <li class="nav__item"><a [routerLink]="['for', 'thiswk']">Today</a></li>
-        <li class="nav__item">Projects</li>
+        <li class="nav__item"><a [routerLink]="['for', 'thiswk']">This Week</a></li>
+        <li class="proj-menu"
+          (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()">
+          <div class="nav__item"><a href="#">Projects</a></div>
+          <proj-menu 
+            [show]="showProjMenu"
+          >
+          </proj-menu>
+        </li>
         <li class="nav__item nav__item--separate" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}"><a [routerLink]="['new']">create todo</a></li>
       </ul>
     </nav>

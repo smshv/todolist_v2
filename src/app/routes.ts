@@ -16,5 +16,10 @@ export const routes: Routes = [
         path: 'new',
         component: CreateTaskComponent,
         title: 'New ToDo Task'
+    },
+    {
+        path: 'proj/:projName',
+        component: ViewTasksComponent,
+        title: 'Project tasks'
     }
 ];
