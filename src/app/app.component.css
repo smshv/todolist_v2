@@ -47,6 +47,7 @@
 }
 .nav__item:hover{
     border-bottom-color: #aa4162;
+    cursor: pointer;
 }
 .proj-menu{
     position: relative;

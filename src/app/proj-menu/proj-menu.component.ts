@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
         *ngFor="let projName of projList" 
         class="proj-nav__item"
         >
-        <a [routerLink]="['proj', projName]">{{projName}}</a>
+        <a [routerLink]="['/getproj', projName]">{{projName}}</a>
       </li>
     </ul>
   `,

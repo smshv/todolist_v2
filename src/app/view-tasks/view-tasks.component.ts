@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TaskServiceService } from '../task-service.service';
+import { Subscriber, Subscription } from 'rxjs';
 
 
 @Component({
@@ -8,24 +10,34 @@ import { ActivatedRoute } from '@angular/router';
   imports: [],
   template: `
     <p>
-      view-tasks works! VID: {{val}}
+      view-tasks works! VID: {{getTasksBy}}
     </p>
   `,
   styleUrl: './view-tasks.component.css'
 })
-export class ViewTasksComponent{
-  route: ActivatedRoute = inject(ActivatedRoute);
-  val: string = 'all';
+export class ViewTasksComponent implements OnInit, OnDestroy{
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  private subscriptions = new Subscription();
+  getTasksBy: string = 'all';
   constructor(){
-    const params = this.route.snapshot.params
-    if ( Object.hasOwnProperty('vid')){
-      this.val = params['vid'];
-    }else if( Object.hasOwnProperty('today') ){
-      this.val = 'today';
-    }else if( Object.hasOwnProperty('thiswk') ){
-      this.val = 'thiswk';
-    }else if( Object.hasOwnProperty('projName') ){
-      this.val = params['projName'];
-    }
+  }
+  
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.route.params.subscribe(params=>{
+        if ( Object.keys(params).length < 1){
+          this.getTasksBy = 'all';
+        }
+        else if ( params.hasOwnProperty('due') ){
+          this.getTasksBy = params['due'];
+        }else if ( params.hasOwnProperty('proj') ){
+          this.getTasksBy = params['proj'];
+        }
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

@@ -9,17 +9,12 @@ export const routes: Routes = [
         title: 'All tasks'
     },
     {
-        path: 'for/:vid',
-        component: ViewTasksComponent
-    },
-    {
-        path: 'new',
-        component: CreateTaskComponent,
-        title: 'New ToDo Task'
-    },
-    {
-        path: 'proj/:projName',
+        path: 'getby/:due',
         component: ViewTasksComponent,
-        title: 'Project tasks'
+        title: 'Tasks due today'
+    },
+    {
+        path: 'getproj/:proj',
+        component: ViewTasksComponent,
     }
 ];
