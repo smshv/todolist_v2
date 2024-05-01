@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TaskServiceService } from '../task-service.service';
-import { Subscriber, Subscription } from 'rxjs';
+import { TaskManager, Priority } from '../task-service.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
