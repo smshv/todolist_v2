@@ -37,7 +37,7 @@
 .nav__item{
     align-self: center;
     text-transform: uppercase;
-    padding: 0.25rem;
+    padding: 0.25rem 0;
     font-size: 1.125rem;
     color: #aa4162;
     border-bottom: 2px solid transparent;
@@ -60,4 +60,15 @@
 .nav__item--separate.is-big-screen{
     margin-left: auto;
     text-align: right;
+}
+
+.task{
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+.task__prop{
+    flex-grow: 1;
+    border: 2px solid red;
+    text-align: center;
 }

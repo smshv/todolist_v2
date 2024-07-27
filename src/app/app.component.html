@@ -6,9 +6,9 @@
 <main class="main">
     <nav class="nav" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}">
       <ul class="nav__list container" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}">
-        <li class="nav__item"><a [routerLink]="['/']" (onclick)="getTasksBy='all'">Home</a></li>
-        <li class="nav__item"><a [routerLink]="['/getby', 'today']" (onclick)="getTasksBy='today'">Today</a></li>
-        <li class="nav__item"><a [routerLink]="['/getby','thiswk']" (onclick)="getTasksBy='thiswk'">This Week</a></li>
+        <li class="nav__item"><a>Home</a></li>
+        <li class="nav__item"><a>Today</a></li>
+        <li class="nav__item"><a>This Week</a></li>
         <li class="proj-menu"
           (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()">
           <div class="nav__item">Projects</div>
@@ -17,12 +17,19 @@
           >
           </proj-menu>
         </li>
-        <li class="nav__item nav__item--separate" [ngClass]="{'is-phone-portrait': isPhoneProtrait, 'is-big-screen': !isPhoneProtrait}"><a [routerLink]="['new']">create todo</a></li>
       </ul>
     </nav>
     <section class="contents">
       <div class="container">
-        <router-outlet></router-outlet>
+          <!--
+          <ul class="task">
+            <li class="task__prop">Eat</li>
+            <li class="task__prop">High</li>
+            <li class="task__prop">Dec 23 2024</li>
+          </ul> 
+           -->
+          <button (click)="taskService.createProj()">Create Task</button>
+        
       </div>
     </section>
 </main>

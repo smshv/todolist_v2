@@ -1,19 +1,15 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { TaskServiceService } from '../task-service.service';
+import { Component, Input, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'proj-menu',
   standalone: true,
-  imports: [CommonModule, RouterLink], //(mouseleave)="hide.emit(false)"
+  imports: [CommonModule], //(mouseleave)="hide.emit(false)"
   template: `
-    <ul class="proj-nav" [ngClass]="{'visible':show}"> 
-      <li 
-        *ngFor="let projName of projList" 
-        class="proj-nav__item"
-        >
-        <a [routerLink]="['/getproj', projName]">{{projName}}</a>
+    <ul class="proj-nav" [ngClass]="{'visible':show}">
+      <li class="proj-nav__item" *ngFor="let name of projNames">
+        {{name}}
       </li>
     </ul>
   `,
@@ -27,12 +23,10 @@ import { CommonModule } from '@angular/common';
       background-color: #eee;
       list-style: none;
       visibility: hidden;
-      padding-bottom: 0.25rem;
     }
     .proj-nav__item{
-      margin: 0 auto;
+      margin: 0.2rem auto;
       text-transform: uppercase;
-      padding: 0.2rem;
       font-size: 1.125rem;
       color: #aa4162;
       border-bottom: 2px solid transparent;
@@ -49,11 +43,17 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class ProjMenuComponent {
-  projList: string[];
-  taskService: TaskServiceService = inject(TaskServiceService);
+  
   @Input() show: boolean = false;
-  //@Output() hide = new EventEmitter<boolean>(); 
+  //@Output() hide = new EventEmitter<boolean>();
+  private taskService: TaskService = inject(TaskService);
+  projNames: Array<string>=[];
   constructor(){
-    this.projList = this.taskService.getProjectList();
+    effect(()=>{
+      this.taskService.isProjChanged();
+      this.projNames = this.taskService.getProjNames();
+    });
+
   }
+  
 }
