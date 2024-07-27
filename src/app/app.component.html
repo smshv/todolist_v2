@@ -9,13 +9,21 @@
         <li class="nav__item"><a>Home</a></li>
         <li class="nav__item"><a>Today</a></li>
         <li class="nav__item"><a>This Week</a></li>
-        <li class="proj-menu"
-          (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()">
-          <div class="nav__item">Projects</div>
+        <!-- 
+          <li class="proj-menu"
+            (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()">
+            <div class="nav__item">Projects</div>
+            <proj-menu 
+              [show]="showProjMenu"
+            >
+            </proj-menu>
+          </li>
+        -->
+        <li class="proj-menu nav__item" (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()"><a>Projects</a>
           <proj-menu 
-            [show]="showProjMenu"
-          >
-          </proj-menu>
+          [show]="showProjMenu"
+        >
+        </proj-menu>
         </li>
       </ul>
     </nav>

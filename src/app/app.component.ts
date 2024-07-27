@@ -30,7 +30,4 @@ export class AppComponent implements OnInit{
     await new Promise(r => setTimeout(r, 600))
     this.showProjMenu = false;
   }
-  con(){
-    console.log("wth");
-  }
 }

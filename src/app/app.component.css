@@ -42,9 +42,7 @@
     color: #aa4162;
     border-bottom: 2px solid transparent;
 }
-.proj-menu>.nav__item{
-    margin: 0px 1rem;  /*making proj-menu width bigger*/
-}
+
 .nav__item:hover{
     border-bottom-color: #aa4162;
     cursor: pointer;
