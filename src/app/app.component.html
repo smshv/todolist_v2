@@ -12,6 +12,7 @@
         <li class="proj-menu nav__item" (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()"><a>Projects</a>
           <proj-menu 
           [show]="showProjMenu"
+          [projNames]="taskService.projNameList()"
         >
         </proj-menu>
         </li>
@@ -19,7 +20,7 @@
     </nav>
     <section class="contents">
       <div class="container">
-          <app-view-tasks *ngFor="let task of taskService.getAllTasks()" [task]="task">
+          <app-view-tasks *ngFor="let task of taskService.taskListInView()" [task]="task">
           </app-view-tasks>
           <button (click)="taskService.createTask()">Create Task</button>
       </div>

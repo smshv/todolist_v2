@@ -17,17 +17,8 @@ export class AppComponent implements OnInit{
   title: string = 'ToDoList';
   isPhoneProtrait: boolean = false;
   showProjMenu: boolean = false;
-  getTasksBy: string = 'all';
   taskService: TaskService = inject(TaskService);
-  taskListToView: Array<Task> = this.taskService.getAllTasks();
-
-  constructor(){
-    effect(()=>{
-      this.taskService.isTaskAddedToView();
-      this.taskListToView = this.taskService.getAllTasks();
-    });
-  }
-
+  
   ngOnInit() {
     this.breakPointObserver.observe(Breakpoints.HandsetPortrait)
         .subscribe(result => {

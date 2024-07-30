@@ -45,14 +45,5 @@ import { TaskService } from '../task.service';
 export class ProjMenuComponent {
   
   @Input() show: boolean = false;
-  //@Output() hide = new EventEmitter<boolean>();
-  private taskService: TaskService = inject(TaskService);
-  projNames: Array<string>=[];
-  constructor(){
-    effect(()=>{
-      this.taskService.isProjChanged();
-      this.projNames = this.taskService.getProjNames();
-    });
-  }
-  
+  @Input() projNames: Array<string>=[];
 }

@@ -6,28 +6,33 @@ import { Injectable, signal, Signal } from '@angular/core';
 
 export class TaskService {
   private projList: { [key:string]: Array<Task>};
-  isProjChanged = signal<boolean>(false);
+  projNameList = signal<Array<string>>([]);
+  taskListInView = signal<Array<Task>>([]);
   isTaskAddedToView = signal<boolean>(false);
   projCounter: number = 0;
   constructor() { 
     this.projList = {};
-    this.isProjChanged.set(true);
   }
   createTask() {
-    if ( this.projList.hasOwnProperty('proj') ){
-      this.projList['proj'].push(
-        {name: 'task', projName: 'proj1', priority: Priority.High, duedate: '22/02/2021', doneStatus:false, details: 'abracadabra'}
-      );
+    const task: Task = {name: 'task', projName: 'proj1', priority: Priority.High, duedate: '22/02/2021', doneStatus:false, details: 'abracadabra'}
+
+    if ( this.projList.hasOwnProperty(task.projName) ){
+      this.projList['proj'].push(task);
     }else{
-      this.projList['proj'] = [
-        {name: 'task', projName: 'proj1', priority: Priority.High, duedate: '22/02/2021', doneStatus:false, details: 'abracadabra'}];
+      this.projList['proj'] = [task];
     }
-    this.isTaskAddedToView.set(!this.isTaskAddedToView);
+    this.taskListInView.update(x=>{
+      x.push(task);
+      return x;
+    })
   }
   createProj(){
     this.projList[`proj${this.projCounter}`] = [];
-    this.isProjChanged.set(!this.isProjChanged());
     this.projCounter += 1
+    this.projNameList.update(x=>{
+      x.push(`proj${this.projCounter}`);
+      return x;
+    });
   }
   getProjNames(){
     return Object.keys(this.projList);
