@@ -53,7 +53,6 @@ export class ProjMenuComponent {
       this.taskService.isProjChanged();
       this.projNames = this.taskService.getProjNames();
     });
-
   }
   
 }

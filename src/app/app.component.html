@@ -9,16 +9,6 @@
         <li class="nav__item"><a>Home</a></li>
         <li class="nav__item"><a>Today</a></li>
         <li class="nav__item"><a>This Week</a></li>
-        <!-- 
-          <li class="proj-menu"
-            (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()">
-            <div class="nav__item">Projects</div>
-            <proj-menu 
-              [show]="showProjMenu"
-            >
-            </proj-menu>
-          </li>
-        -->
         <li class="proj-menu nav__item" (mouseover)="showProjMenu=true" (mouseleave)="hideProjNav()"><a>Projects</a>
           <proj-menu 
           [show]="showProjMenu"
@@ -29,15 +19,9 @@
     </nav>
     <section class="contents">
       <div class="container">
-          <!--
-          <ul class="task">
-            <li class="task__prop">Eat</li>
-            <li class="task__prop">High</li>
-            <li class="task__prop">Dec 23 2024</li>
-          </ul> 
-           -->
-          <button (click)="taskService.createProj()">Create Task</button>
-        
+          <app-view-tasks *ngFor="let task of taskService.getAllTasks()" [task]="task">
+          </app-view-tasks>
+          <button (click)="taskService.createTask()">Create Task</button>
       </div>
     </section>
 </main>

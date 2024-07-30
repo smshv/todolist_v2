@@ -1,13 +1,14 @@
-import { Component, OnInit, inject} from '@angular/core';
+import { Component, OnInit, effect, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { TaskService } from './task.service';
+import { TaskService, Task } from './task.service';
 import { ProjMenuComponent } from './proj-menu/proj-menu.component';
+import { ViewTasksComponent } from './view-tasks/view-tasks.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ CommonModule, ProjMenuComponent ],
+  imports: [CommonModule, ProjMenuComponent, ViewTasksComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -18,13 +19,21 @@ export class AppComponent implements OnInit{
   showProjMenu: boolean = false;
   getTasksBy: string = 'all';
   taskService: TaskService = inject(TaskService);
+  taskListToView: Array<Task> = this.taskService.getAllTasks();
+
+  constructor(){
+    effect(()=>{
+      this.taskService.isTaskAddedToView();
+      this.taskListToView = this.taskService.getAllTasks();
+    });
+  }
 
   ngOnInit() {
-  this.breakPointObserver.observe(Breakpoints.HandsetPortrait)
-      .subscribe(result => {
-        this.isPhoneProtrait = result.matches;
-      }
-    );
+    this.breakPointObserver.observe(Breakpoints.HandsetPortrait)
+        .subscribe(result => {
+          this.isPhoneProtrait = result.matches;
+        }
+      );
   }
   async hideProjNav(){
     await new Promise(r => setTimeout(r, 600))

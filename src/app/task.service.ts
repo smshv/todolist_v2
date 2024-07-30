@@ -7,6 +7,7 @@ import { Injectable, signal, Signal } from '@angular/core';
 export class TaskService {
   private projList: { [key:string]: Array<Task>};
   isProjChanged = signal<boolean>(false);
+  isTaskAddedToView = signal<boolean>(false);
   projCounter: number = 0;
   constructor() { 
     this.projList = {};
@@ -15,20 +16,24 @@ export class TaskService {
   createTask() {
     if ( this.projList.hasOwnProperty('proj') ){
       this.projList['proj'].push(
-        {name: 'task', priority: Priority.High, duedate: '22/02/2021'}
+        {name: 'task', projName: 'proj1', priority: Priority.High, duedate: '22/02/2021', doneStatus:false, details: 'abracadabra'}
       );
     }else{
       this.projList['proj'] = [
-        {name: 'task', priority: Priority.Low, duedate: '12/03/2020'}];
+        {name: 'task', projName: 'proj1', priority: Priority.High, duedate: '22/02/2021', doneStatus:false, details: 'abracadabra'}];
     }
+    this.isTaskAddedToView.set(!this.isTaskAddedToView);
   }
   createProj(){
-    this.projList[`proj${this.projCounter}`] = [{name: 'task', priority: Priority.High, duedate: '22/02/2021'}];
+    this.projList[`proj${this.projCounter}`] = [];
     this.isProjChanged.set(!this.isProjChanged());
     this.projCounter += 1
   }
   getProjNames(){
     return Object.keys(this.projList);
+  }
+  getAllTasks(){
+    return Object.entries(this.projList).map((x,_)=>x[1]).flat();
   }
 }
 
@@ -38,8 +43,11 @@ enum Priority{
   High
 }
 
-interface Task{
+export interface Task{
   name: string,
+  projName: string,
   priority: Priority,
-  duedate: string
+  duedate: string,
+  details: string,
+  doneStatus: boolean,
 }
