@@ -1,14 +1,30 @@
+.card{
+    background-color: #eee;
+    color: #991b1b;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 0.8rem;
+    margin: 0.5rem 0;
+}
 ul{
     list-style: none;
+}
+li{
+    margin: 0.25rem 0;
+    display: flex;
+    align-items: center;
 }
 .status {
     width: 20px;
     height: 20px;
     border-radius: 4px;
     border: 2px solid #3ba395;
+    display: inline-block;
+    margin-right: 4px;
 }
 .task-details {
-    margin-left: 150px;
     width: 80px;
     height: 30px;
     border: 1px solid #3ba395;
@@ -19,4 +35,16 @@ ul{
 .task-details:hover {
     background-color: #3ba395;
     color: white;
+}
+.priority1{
+    border-left: 3px solid green;
+    border-right: 3px solid green;
+}
+.priority2{
+    border-left: 3px solid orange;
+    border-right: 3px solid orange;
+}
+.priority3{
+    border-left: 3px solid red;
+    border-right: 3px solid red;
 }
