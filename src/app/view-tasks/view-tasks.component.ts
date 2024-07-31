@@ -6,12 +6,12 @@ import { Task } from '../task.service';
   standalone: true,
   imports: [],
   template: `
-    <div>
-      {{task.name}}
-      <ul>
-        <li>{{task.projName}}</li>
-      </ul>
-    </div>
+    <ul>
+      <li><div class="status"></div>{{task.name}}</li>
+      <li>Project: {{task.projName}}</li>
+      <li><button class="task-details">Details</button></li>
+      <li>Due: {{task.duedate}}</li>
+    </ul>
   `,
   styleUrl: './view-tasks.component.css'
 })

@@ -1,6 +1,5 @@
-import { Component, Input, effect, inject } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskService } from '../task.service';
 
 @Component({
   selector: 'proj-menu',
